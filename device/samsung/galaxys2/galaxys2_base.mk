@@ -56,7 +56,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	dalvik.vm.heapstartsize=64m \
 	dalvik.vm.heapgrowthlimit=128m \
 	dalvik.vm.heapsize=128m \
-	ro.goo.developerid=ktoonsez
+	ro.goo.developerid=task650-ktoonsez
 
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 
