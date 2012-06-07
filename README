@@ -1,0 +1,15 @@
+Instructions for changes:
+
+1.  Always make changes in stock aokp that you want to add.
+2.  Make sure it compiles
+	a.  If it does run cp_from_aokp.sh to make it backup to our github version
+	b.  run git add .
+	c.  run git commit -m "NAME OF CHANGE"
+	d.  run git push origin
+3.  If it does NOT compile and you can not fix the issue and need to start over
+	a.  just copy the files back from the github dir back over top of stock AOKP
+
+
+Instructions for bringing in CM stuff:
+1.  run cp_from_cm_to_aokp.sh (this just copies the CM kernel to the AOKP kernel dir right now)
+
