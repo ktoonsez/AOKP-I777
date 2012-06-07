@@ -58,6 +58,7 @@ PRODUCT_COPY_FILES += \
     vendor/samsung/galaxys2/Alert-SonarMerge.mp3:system/media/audio/notifications/Alert-SonarMerge.mp3 \
     vendor/samsung/galaxys2/IphoneCellSoundMerge.mp3:system/media/audio/ringtones/IphoneCellSoundMerge.mp3 \
     vendor/aokp/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
+    ../android/system/out/target/product/i777/system/app/Camera.apk:system/app/Camera.apk \
     ../android/system/out/target/product/i777/system/app/DSPManager.apk:system/app/DSPManager.apk \
     ../android/system/out/target/product/i777/system/app/Apollo.apk:system/app/Apollo.apk \
     ../android/system/out/target/product/i777/system/app/Trebuchet.apk:system/app/Trebuchet.apk \
