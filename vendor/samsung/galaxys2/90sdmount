@@ -1,3 +1,0 @@
-#!/system/xbin/busybox sh
-
-/system/xbin/busybox ln -s -d /mnt/emmc/ /mnt/sdcard/external_sd
