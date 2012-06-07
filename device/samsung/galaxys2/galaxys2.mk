@@ -61,7 +61,7 @@ PRODUCT_COPY_FILES += \
     ../android/system/out/target/product/i777/system/app/DSPManager.apk:system/app/DSPManager.apk \
     ../android/system/out/target/product/i777/system/app/Apollo.apk:system/app/Apollo.apk \
     ../android/system/out/target/product/i777/system/app/Trebuchet.apk:system/app/Trebuchet.apk \
-    ../android/system/out/target/product/i777/system/app/LatinIME.apk:system/app/LatinIME.apk \    
+    ../android/system/out/target/product/i777/system/app/LatinIME.apk:system/app/LatinIME.apk   
 
 # NFC
 PRODUCT_PACKAGES += \
