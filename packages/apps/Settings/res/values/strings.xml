@@ -1725,7 +1725,7 @@
     <!-- About phone screen, status item label-->
     <string name="model_number">Model number</string>
     <!-- About phone screen,  setting option name-->
-    <string name="baseband_version">Baseband version</string>
+    <string name="baseband_version">Modem version</string>
     <!-- About phone screen,  setting option name-->
     <string name="kernel_version">Kernel version</string>
     <!-- About phone screen,  setting option name-->
