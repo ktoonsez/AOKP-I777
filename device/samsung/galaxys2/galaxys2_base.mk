@@ -176,6 +176,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mass_storage
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID="Task650 & Ktoonsez AOKP" BUILD_ID="Task650 & Ktoonsez AOKP" BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
+
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Include exynos4 platform specific parts
