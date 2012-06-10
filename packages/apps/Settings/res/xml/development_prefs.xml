@@ -22,11 +22,28 @@
         android:title="@string/enable_adb" 
         android:summary="@string/enable_adb_summary"/>
 
+    <CheckBoxPreference
+        android:key="adb_over_network"
+        android:title="@string/adb_over_network"
+        android:summary="@string/adb_over_network_summary"
+        android:dependency="enable_adb"/>
+
     <Preference
         android:key="verifier_device_identifier"
         style="?android:attr/preferenceInformationStyle"
         android:title="@string/verifier_device_identifier"
         android:summary="@string/verifier_device_identifier_not_available"
+        android:persistent="false" />
+
+    <com.android.settings.HostnamePreference
+        android:key="device_hostname"
+        android:title="@string/device_hostname"
+        android:dialogTitle="@string/device_hostname"
+        android:positiveButtonText="@string/wifi_save"
+        android:negativeButtonText="@string/wifi_cancel"
+        android:selectAllOnFocus="true"
+        android:imeOptions="actionDone"
+        android:inputType="textNoSuggestions"
         android:persistent="false" />
 
     <CheckBoxPreference 
