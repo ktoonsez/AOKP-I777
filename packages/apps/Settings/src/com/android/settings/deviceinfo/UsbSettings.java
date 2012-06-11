@@ -70,7 +70,6 @@ public class UsbSettings extends SettingsPreferenceFragment {
         addPreferencesFromResource(R.xml.usb_settings);
         root = getPreferenceScreen();
 
-
         mMtp = (CheckBoxPreference)root.findPreference(KEY_MTP);
         mPtp = (CheckBoxPreference)root.findPreference(KEY_PTP);
         mUms = (CheckBoxPreference)root.findPreference(KEY_MASS_STORAGE);
@@ -158,7 +157,6 @@ public class UsbSettings extends SettingsPreferenceFragment {
             mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MASS_STORAGE, true);
             updateToggles(UsbManager.USB_FUNCTION_MASS_STORAGE);
         }
-
         return true;
     }
 }
