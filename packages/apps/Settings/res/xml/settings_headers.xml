@@ -75,6 +75,7 @@
             android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
             android:targetPackage="com.cyanogenmod.settings.device"
             android:targetClass="com.cyanogenmod.settings.device.DeviceSettings" />
+    </header>
 
     <header android:icon="@drawable/ic_settings_themes"
             android:title="@string/themes_title">
