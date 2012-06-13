@@ -127,6 +127,9 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2/overlay/include
 
+# assert
+TARGET_OTA_ASSERT_DEVICE := i777,I777,galaxys2att,galaxys2,SGH-I777,GT-I9100,GT-i9100,I9100,i9100
+
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/galaxys2/BoardConfigVendor.mk
 
