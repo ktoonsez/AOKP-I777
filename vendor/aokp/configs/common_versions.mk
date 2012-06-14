@@ -4,7 +4,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID="Task650 & Ktoonsez AOKP" BUILD
 # Rom Manager properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.rommanager.developerid=teamkang \
-    ro.aokp.version=$(shell date +"%D_%T")
+    ro.aokp.version=$(shell date +"%m.%d.%y")
 
 # Goo updater app
 PRODUCT_PROPERTY_OVERRIDES += \
