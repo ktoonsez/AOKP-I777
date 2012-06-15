@@ -204,6 +204,8 @@
     <string name="volume_wake_summary">Tapping the volume keys while your phone is off will turn the screen on.</string>
     <string name="volume_music_controls_title">Volume music controls</string>
     <string name="volume_music_controls_summary">Long press volume buttons to skip tracks while screen is off. Volume wake will not work when music is playing.</string>
+    <string name="lockscreen_stock_music_layout_title">Stock music layout</string>
+    <string name="lockscreen_stock_music_layout_summary">Use the stock layout when playing music.</string>
     <string name="lockscreen_show_nav_title">Hide nav bar</string>
     <string name="lockscreen_show_nav_summary">Hide the nav bar (if your device supports it) on the lockscreen.</string>
     <string name="custom_app_n_dialog_title">Choose action for target %1$s</string>
@@ -256,6 +258,9 @@
     <string name="title_show_torch_toggle">Show torch toggle</string>
     <string name="title_show_airplane_toggle">Show airplane toggle</string>
     <string name="title_show_navbar_hide">Show navigation bar toggle</string>
+
+    <!-- Share to Clipboard -->
+    <string name="clipboard_notification">Copied to clipboard.</string>
 
     <!-- Power Saving -->
     <string name="title_pref_powersaving_pref_mode">Enable power saver</string>
