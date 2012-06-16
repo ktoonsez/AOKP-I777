@@ -77,6 +77,16 @@
             android:targetClass="com.cyanogenmod.settings.device.DeviceSettings" />
     </header>
 
+    <header
+        android:id="@+id/ota_app"
+        android:title="@string/ota_app_title"
+        android:icon="@drawable/ic_settings_ota">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.aokp.ota"
+            android:targetClass="com.aokp.ota.main" />
+    </header>
+
     <header android:icon="@drawable/ic_settings_themes"
             android:title="@string/themes_title">
         <intent
