@@ -60,9 +60,9 @@
   <project path="device/samsung/crespo4g" name="AOKP/device_samsung_crespo4g" remote="gh" revision="ics" />
   <project path="device/samsung/espressowifi" name="AOKP/android_device_samsung_espressowifi" remote="gh" revision="ics" />
   <project path="device/samsung/fascinatemtd" name="AOKP/device_samsung_fascinatemtd" remote="gh" revision="ics" />
-  <project name="AOKP/device_samsung_galaxys2" revision="ics" remote="gh" path="device/samsung/galaxys2"/>
   <project path="device/samsung/galaxysmtd" name="AOKP/device_samsung_galaxysmtd" remote="gh" revision="ics" />
   <project path="device/samsung/maguro" name="AOKP/device_samsung_maguro" remote="gh" revision="ics" />
+  <project path="device/samsung/mesmerizemtd" name="AOKP/android_device_samsung_mesmerizemtd" remote="gh" revision="ics" />
   <project path="device/samsung/p4" name="AOKP/device_samsung_p4" remote="gh" revision="ics" />
   <project path="device/samsung/p4-common" name="AOKP/device_samsung_p4-common" remote="gh" revision="ics" />
   <project path="device/samsung/p4vzw" name="AOKP/device_samsung_p4vzw" remote="gh" revision="ics" />
@@ -70,6 +70,7 @@
   <project path="device/samsung/p5" name="AOKP/android_device_samsung_p5" remote="gh" revision="ics" />
   <project path="device/samsung/p5-common" name="AOKP/android_device_samsung_p5-common" remote="gh" revision="ics" />
   <project path="device/samsung/p5wifi" name="AOKP/android_device_samsung_p5wifi" remote="gh" revision="ics" />
+  <project path="device/samsung/showcasemtd" name="AOKP/android_device_samsung_showcasemtd" remote="gh" revision="ics" />
   <project path="device/samsung/toro" name="AOKP/device_samsung_toro" remote="gh" revision="ics" />
   <project path="device/samsung/toroplus" name="AOKP/android_device_samsung_toroplus" remote="gh" revision="ics" />
   <project path="device/samsung/tuna" name="AOKP/device_samsung_tuna" remote="gh" revision="ics" />
@@ -77,6 +78,7 @@
   <project path="device/samsung/p1c" name="AOKP/device_samsung_p1c" remote="gh" revision="ics" />
   <project path="device/samsung/p1-common" name="AOKP/device_samsung_p1-common" remote="gh" revision="ics" />
   <project path="device/ti/panda" name="device/ti/panda" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
+  <project name="AOKP/device_samsung_galaxys2" revision="ics" remote="gh" path="device/samsung/galaxys2"/>
   <project path="docs/source.android.com" name="platform/docs/source.android.com" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/android-mock" name="platform/external/android-mock" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/antlr" name="platform/external/antlr" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
@@ -94,7 +96,7 @@
   <project path="external/bsdiff" name="platform/external/bsdiff" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/bzip2" name="platform/external/bzip2" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/chromium" name="AOKP/external_chromium" remote="gh" revision="ics"/>
-  <project path="external/clang" name="platform/external/clang" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
+  <project path="external/clang" name="AOKP/external_clang" remote="gh" revision="ics" />
   <project path="external/collada" name="platform/external/collada" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/dbus" name="platform/external/dbus" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/dhcpcd" name="platform/external/dhcpcd" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
@@ -166,7 +168,7 @@
   <project path="external/oprofile" name="CyanogenMod/android_external_oprofile" remote="gh" revision="ics"  />
   <project path="external/pcre" name="platform/external/pcre" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/ping" name="AOKP/external_ping" remote="gh" revision="ics" />
-  <project path="external/ping6" name="platform/external/ping6" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
+  <project path="external/ping6" name="AOKP/external_ping6" remote="gh" revision="ics" />
   <project path="external/ppp" name="platform/external/ppp" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/proguard" name="platform/external/proguard" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="external/protobuf" name="platform/external/protobuf" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
@@ -251,7 +253,7 @@
   <project path="packages/apps/Mms" name="AOKP/packages_apps_Mms" remote="gh" revision="ics" />
   <project path="packages/apps/Music" name="platform/packages/apps/Music" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="packages/apps/MusicFX" name="platform/packages/apps/MusicFX" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
-  <project path="packages/apps/Nfc" name="platform/packages/apps/Nfc" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
+  <project path="packages/apps/Nfc" name="AOKP/packages_apps_Nfc" remote="gh" revision="ics"/>
   <project path="packages/apps/PackageInstaller" name="platform/packages/apps/PackageInstaller" remote="aosp" revision="refs/tags/android-4.0.4_r1.2"/>
   <project path="packages/apps/Phone" name="AOKP/packages_apps_Phone" remote="gh" revision="ics" />
   <project path="packages/apps/AOKPtips" name="AOKP/packages_apps_AOKPtips" remote="gh" revision="ics"/>
