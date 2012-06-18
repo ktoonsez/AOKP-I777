@@ -56,3 +56,17 @@ fi
 echo "Copy file cyanogenmod_i777_defconfig"
 cp ../android/system/kernel/samsung/smdk4210/arch/arm/configs/cyanogenmod_i777_defconfig kernel/samsung/smdk4210/arch/arm/configs/cyanogenmod_i777_defconfig
 
+if [ ! -d frameworks/base/core/java/android/provider ];
+then
+   mkdir frameworks/base/core/java/android/provider
+fi
+echo "Copy file provider/Settings.java"
+cp ../aokp/frameworks/base/core/java/android/provider/Settings.java frameworks/base/core/java/android/provider/Settings.java
+
+if [ ! -d frameworks/base/services/java/com/android/server ];
+then
+   mkdir frameworks/base/services/java/com/android/server
+fi
+echo "Copy file server/PowerManagerService.java"
+cp ../aokp/frameworks/base/services/java/com/android/server/PowerManagerService.java frameworks/base/services/java/com/android/server/PowerManagerService.java
+
