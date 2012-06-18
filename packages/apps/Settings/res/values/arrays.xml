@@ -840,4 +840,30 @@
         <item>90</item>
     </string-array>
 
+    <string-array name="entries_light_brightness_speed">
+        <item>1 second</item>
+        <item>2 seconds</item>
+        <item>3 seconds</item>
+        <item>4 seconds</item>
+        <item>5 seconds</item>
+        <item>6 seconds</item>
+        <item>7 seconds</item>
+        <item>8 seconds</item>
+        <item>9 seconds</item>
+        <item>10 seconds</item>
+    </string-array>
+
+    <string-array name="values_light_brightness_speed" translatable="false">
+        <item>100000</item>
+        <item>200000</item>
+        <item>300000</item>
+        <item>400000</item>
+        <item>500000</item>
+        <item>600000</item>
+        <item>700000</item>
+        <item>800000</item>
+        <item>900000</item>
+        <item>1000000</item>
+    </string-array>
+
 </resources>

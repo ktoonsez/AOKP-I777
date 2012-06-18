@@ -1724,6 +1724,7 @@
     <string name="cpu_info">CPU</string>
     <!-- About phone screen, Free memory info -->
     <string name="mem_info">Memory</string>
+
     <!-- About phone screen, status item label -->
     <string name="firmware_version">Android version</string>
     <!-- About phone screen, status item label-->
@@ -3868,6 +3869,9 @@ found in the list of installed apps.</string>
     <string name="light_decrease_hysteresis_title">Decrease hysteresis</string>
     <string name="light_decrease_hysteresis_summary">Sensor levels overlap this much downwards</string>
     
+    <string name="light_brightness_speed_title">Brightness Update Speed</string>
+    <string name="light_brightness_speed_summary">The value used to determine how often to update screen brightness</string>
+
     <!-- Light sensor levels -->
     <string name="ll_title">Light sensor levels</string>
     <string name="ll_header_upper">Upper</string>
