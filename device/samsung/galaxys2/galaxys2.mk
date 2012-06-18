@@ -54,6 +54,7 @@ PRODUCT_COPY_FILES += \
 # Extra Apps and files
 PRODUCT_COPY_FILES += \
     vendor/samsung/galaxys2/Gmail.apk:system/app/Gmail.apk \
+    vendor/samsung/galaxys2/aokp_ota.apk:system/app/aokp_ota.apk \
     vendor/samsung/galaxys2/liberty.cfg:system/etc/liberty.cfg \
     vendor/samsung/galaxys2/Alert-SonarMerge.mp3:system/media/audio/notifications/Alert-SonarMerge.mp3 \
     vendor/samsung/galaxys2/IphoneCellSoundMerge.mp3:system/media/audio/ringtones/IphoneCellSoundMerge.mp3 \
