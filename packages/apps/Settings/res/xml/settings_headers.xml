@@ -66,26 +66,6 @@
                 android:targetClass="com.aokp.romcontrol.ROMControlActivity"
                 android:targetPackage="com.aokp.romcontrol" />
     </header>
-    
-    <header
-        android:id="@+id/device_settings"
-        android:title="@string/device_settings_title"
-        android:icon="@drawable/ic_settings_cmdevice">
-        <intent
-            android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
-            android:targetPackage="com.cyanogenmod.settings.device"
-            android:targetClass="com.cyanogenmod.settings.device.DeviceSettings" />
-    </header>
-
-    <header
-        android:id="@+id/ota_app"
-        android:title="@string/ota_app_title"
-        android:icon="@drawable/ic_settings_ota">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="com.aokp.ota"
-            android:targetClass="com.aokp.ota.main" />
-    </header>
 
     <header android:icon="@drawable/ic_settings_themes"
             android:title="@string/themes_title">

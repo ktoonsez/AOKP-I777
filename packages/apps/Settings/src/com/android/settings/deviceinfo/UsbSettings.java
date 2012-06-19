@@ -26,8 +26,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -47,14 +45,10 @@ public class UsbSettings extends SettingsPreferenceFragment {
 
     private static final String KEY_MTP = "usb_mtp";
     private static final String KEY_PTP = "usb_ptp";
-    private static final String KEY_MASS_STORAGE = "usb_mass_storage";
 
     private UsbManager mUsbManager;
-    private StorageManager storageManager;
-    private StorageVolume[] storageVolumes;
     private CheckBoxPreference mMtp;
     private CheckBoxPreference mPtp;
-    private CheckBoxPreference mUms;
 
     private final BroadcastReceiver mStateReceiver = new BroadcastReceiver() {
         public void onReceive(Context content, Intent intent) {
@@ -72,10 +66,6 @@ public class UsbSettings extends SettingsPreferenceFragment {
 
         mMtp = (CheckBoxPreference)root.findPreference(KEY_MTP);
         mPtp = (CheckBoxPreference)root.findPreference(KEY_PTP);
-        mUms = (CheckBoxPreference)root.findPreference(KEY_MASS_STORAGE);
-        if (!storageVolumes[0].allowMassStorage()) {
-            mUms.setEnabled(false);
-        }
 
         return root;
     }
@@ -84,8 +74,6 @@ public class UsbSettings extends SettingsPreferenceFragment {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         mUsbManager = (UsbManager)getSystemService(Context.USB_SERVICE);
-        storageManager = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
-        storageVolumes = storageManager.getVolumeList();
     }
 
     @Override
@@ -111,19 +99,12 @@ public class UsbSettings extends SettingsPreferenceFragment {
         if (UsbManager.USB_FUNCTION_MTP.equals(function)) {
             mMtp.setChecked(true);
             mPtp.setChecked(false);
-            mUms.setChecked(false);
         } else if (UsbManager.USB_FUNCTION_PTP.equals(function)) {
             mMtp.setChecked(false);
-            mUms.setChecked(false);
             mPtp.setChecked(true);
-        } else if (UsbManager.USB_FUNCTION_MASS_STORAGE.equals(function)) {
-            mMtp.setChecked(false);
-            mPtp.setChecked(false);
-            mUms.setChecked(true);
         } else  {
             mMtp.setChecked(false);
             mPtp.setChecked(false);
-            mUms.setChecked(false);
         }
     }
 
@@ -145,17 +126,11 @@ public class UsbSettings extends SettingsPreferenceFragment {
             }
         }
         if (preference == mMtp) {
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.USB_MASS_STORAGE_ENABLED, 0);
             mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MTP, true);
             updateToggles(UsbManager.USB_FUNCTION_MTP);
         } else if (preference == mPtp) {
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.USB_MASS_STORAGE_ENABLED, 0);
             mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_PTP, true);
             updateToggles(UsbManager.USB_FUNCTION_PTP);
-        } else if (preference == mUms) {
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.USB_MASS_STORAGE_ENABLED, 1);
-            mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MASS_STORAGE, true);
-            updateToggles(UsbManager.USB_FUNCTION_MASS_STORAGE);
         }
         return true;
     }

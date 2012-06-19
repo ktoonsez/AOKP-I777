@@ -77,15 +77,5 @@
             android:entries="@array/entries_light_decrease_hysteresis"
             android:entryValues="@array/values_light_decrease_hysteresis"
             android:dependency="light_decrease_enabled" android:persistent="false" />
-
-        <!-- Screen Brightness Update Speed -->
-        <ListPreference android:key="light_brightness_speed"
-            android:title="@string/light_brightness_speed_title"
-            android:summary="@string/light_brightness_speed_summary"
-            android:dialogTitle="@string/light_brightness_speed_title"
-            android:entries="@array/entries_light_brightness_speed"
-            android:entryValues="@array/values_light_brightness_speed"
-            android:persistent="false" />
-
     </PreferenceCategory>
 </PreferenceScreen>
