@@ -1724,16 +1724,17 @@
     <string name="cpu_info">CPU</string>
     <!-- About phone screen, Free memory info -->
     <string name="mem_info">Memory</string>
+
     <!-- About phone screen, status item label -->
     <string name="firmware_version">Android version</string>
     <!-- About phone screen, status item label-->
     <string name="model_number">Model number</string>
     <!-- About phone screen,  setting option name-->
-    <string name="baseband_version">Baseband version</string>
+    <string name="baseband_version">Modem version</string>
     <!-- About phone screen,  setting option name-->
     <string name="kernel_version">Kernel version</string>
     <!-- About phone screen,  setting option name-->
-    <string name="build_number">Build number</string>
+    <string name="build_number">Developers</string>
 
     <!-- About phone screen, show when a value of some status item is unavailable. -->
     <string name="device_info_not_available">Not available</string>
@@ -1894,6 +1895,24 @@
     <string name="usb_ptp_summary">Lets you transfer photos using camera software, and transfer any files on computers that don\'t support MTP</string>
     <!-- Storage setting.  Summary for PTP checkbox [CHAR LIMIT=NONE]-->
     <string name="usb_label_installer_cd">"Install file-transfer tools"</string>
+    <!-- Storage setting. Title for Mass Storage checkbox [CHAR LIMIT=30]-->
+    <string name="usb_mass_storage_title">Mass Storage</string>
+    <!-- Storage setting. Summary for UMS checkbox [CHAR LIMIT=NONE]-->
+    <string name="usb_mass_storage_summary">Enable USB mass storage</string>
+
+    <!-- Storage setting. Menu option for generic storage settings [CHAR LIMIT=30]-->
+    <string name="storage_menu_storage">Storage configuration</string>
+    <!-- Storage setting. Title for generic storage settings [CHAR LIMIT=30]-->
+    <string name="storage_title_storage">Storage configuration</string>
+    <!-- Storage setting. Storage layout setup [CHAR LIMIT=30]-->
+    <string name="storage_layout">Layout configuration</string>
+
+    <!-- Storage layout Settings : Switch storage mountpoints -->
+    <string name="storage_switch_title">Use internal storage</string>
+    <string name="storage_switch_summary_on">Using expanded internal storage for apps and media</string>
+    <string name="storage_switch_summary_off">Using SD Card for apps and media</string>
+    <string name="storage_switch_unavailable">This device doesn\'t have expanded internal storage</string>
+
 
     <!-- Phone info screen, section titles: -->
     <string name="battery_status_title">Battery status</string>
@@ -3815,6 +3834,8 @@ found in the list of installed apps.</string>
     <string name="quick_links_title">Quick Links</string>
     <string name="rom_control_title">ROM Control</string>
     <string name="themes_title">Themes</string>
+    <string name="device_settings_title">SGS II Settings</string>
+    <string name="ota_app_title">OTA Updater</string>
 
     <!-- Display | Backlight -->
 	<string name="backlight_title">Custom backlight settings</string>
@@ -3824,6 +3845,14 @@ found in the list of installed apps.</string>
     <string name="light_filter_title">Light sensor filter</string>
     <string name="light_filter_enabled_title">Enabled</string>
     <string name="light_filter_enabled_summary">Apply moving average filter to sensor data to reduce flicker</string>
+
+    <string name="profile_write_nfc_tag">Write to NFC tag</string>
+    <string name="profile_write_touch_tag">Touch tag to write</string>
+    <string name="profile_write_success">Tag successfully written</string>
+    <string name="profile_write_failed">Tag writing failed!</string>
+    <string name="profile_selected">Profile selected: %1$s</string>
+    <string name="profile_nfc_text">Writing a profile to an NFC tag allows you to tap the tag to select that profile. Tapping a second time will select the previously selected profile.</string>
+
     <string name="light_filter_window_title">Window length</string>
     <string name="light_filter_window_summary">Filtered value is the average sensor value during this period</string>
     <string name="light_filter_reset_title">Reset threshold</string>
@@ -3840,6 +3869,9 @@ found in the list of installed apps.</string>
     <string name="light_decrease_hysteresis_title">Decrease hysteresis</string>
     <string name="light_decrease_hysteresis_summary">Sensor levels overlap this much downwards</string>
     
+    <string name="light_brightness_speed_title">Brightness Update Speed</string>
+    <string name="light_brightness_speed_summary">The value used to determine how often to update screen brightness</string>
+
     <!-- Light sensor levels -->
     <string name="ll_title">Light sensor levels</string>
     <string name="ll_header_upper">Upper</string>

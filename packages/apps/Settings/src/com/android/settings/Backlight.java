@@ -39,6 +39,7 @@ public class Backlight extends SettingsPreferenceFragment implements
     private static final String SCREEN_DIM = "light_levels_dim";
     private static final String DECREASE_ENABLED = "light_decrease_enabled";
     private static final String DECREASE_HYSTERESIS = "light_decrease_hysteresis";
+    private static final String BRIGHTNESS_SPEED = "light_brightness_speed";
 
     private CheckBoxPreference mFilterEnabled;
     private ListPreference mFilterWindow;
@@ -48,6 +49,7 @@ public class Backlight extends SettingsPreferenceFragment implements
     private ListPreference mScreenDim;
     private CheckBoxPreference mDecreaseEnabled;
     private ListPreference mDecreaseHysteresis;
+    private ListPreference mBrightnessSpeed;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,11 @@ public class Backlight extends SettingsPreferenceFragment implements
         mDecreaseHysteresis.setValue(String.valueOf(Settings.System.getInt(cr,
                 Settings.System.LIGHT_HYSTERESIS, 50)));
         mDecreaseHysteresis.setOnPreferenceChangeListener(this);
+
+        mBrightnessSpeed = (ListPreference) prefSet.findPreference(BRIGHTNESS_SPEED);
+        mBrightnessSpeed.setValue(String.valueOf(Settings.System.getInt(cr,
+                Settings.System.BRIGHTNESS_SPEED, 1000000)));
+        mBrightnessSpeed.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -134,6 +141,10 @@ public class Backlight extends SettingsPreferenceFragment implements
         } else if (preference == mDecreaseHysteresis) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LIGHT_HYSTERESIS, getInt(newValue));
+            handled = true;
+        } else if (preference == mBrightnessSpeed) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.BRIGHTNESS_SPEED, getInt(newValue));
             handled = true;
         }
 
