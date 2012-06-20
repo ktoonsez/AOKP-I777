@@ -70,3 +70,10 @@ fi
 echo "Copy file server/PowerManagerService.java"
 cp ../aokp/frameworks/base/services/java/com/android/server/PowerManagerService.java frameworks/base/services/java/com/android/server/PowerManagerService.java
 
+if [ ! -d platform_manifest ];
+then
+   mkdir platform_manifest
+fi
+echo "Copy file platform_manifest/default.xml"
+cp ../aokp/platform_manifest/default.xml platform_manifest/default.xml
+
