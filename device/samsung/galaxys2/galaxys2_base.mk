@@ -113,6 +113,7 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.ril_class=Smdk4210RIL \
+	ro.telephony.call_ring.delay=0 \
 	mobiledata.interfaces=pdp0,wlan0,gprs,ppp0
 
 # Filesystem management tools
