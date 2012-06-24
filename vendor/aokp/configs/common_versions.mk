@@ -4,11 +4,11 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID="Task650 & Ktoonsez" BUILD_VERS
 # Rom Manager properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.rommanager.developerid=teamkang \
-    ro.aokp.version=$(shell date +"%m.%d.%y")
+    ro.aokp.version=Build $(shell date +"%m.%d.%y")
 
 # Goo updater app
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.goo.developerid=aokp \
     ro.goo.rom=aokp \
-    ro.goo.version=16
+    ro.goo.version=18
 
