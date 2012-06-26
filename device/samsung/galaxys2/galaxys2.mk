@@ -60,11 +60,41 @@ PRODUCT_COPY_FILES += \
     vendor/samsung/galaxys2/IphoneCellSoundMerge.mp3:system/media/audio/ringtones/IphoneCellSoundMerge.mp3 \
     vendor/aokp/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
     vendor/aokp/prebuilt/common/app/NovaLauncher.apk:system/app/NovaLauncher.apk \
-vendor/aokp/prebuilt/common/app/DSPManager.apk:system/app/DSPManager.apk \
-vendor/aokp/prebuilt/common/app/Trebuchet.apk:system/app/Trebuchet.apk \
+    vendor/aokp/prebuilt/common/app/DSPManager.apk:system/app/DSPManager.apk \
+    vendor/aokp/prebuilt/common/app/Trebuchet.apk:system/app/Trebuchet.apk \
     ../android/system/out/target/product/i777/system/app/Camera.apk:system/app/Camera.apk \
     ../android/system/out/target/product/i777/system/app/Apollo.apk:system/app/Apollo.apk \
     ../android/system/out/target/product/i777/system/app/LatinIME.apk:system/app/LatinIME.apk   
+
+# Copy Animation Files
+PRODUCT_COPY_FILES += \
+    vendor/samsung/galaxys2/keyboard-anim/Bouncey.zip:system/addon.d/keyboard-anim/Bouncey.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Chaos.zip:system/addon.d/keyboard-anim/Chaos.zip \
+    vendor/samsung/galaxys2/keyboard-anim/ChaosRevenge.zip:system/addon.d/keyboard-anim/ChaosRevenge.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Eternity.zip:system/addon.d/keyboard-anim/Eternity.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Flip.zip:system/addon.d/keyboard-anim/Flip.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Photon.zip:system/addon.d/keyboard-anim/Photon.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Spinner.zip:system/addon.d/keyboard-anim/Spinner.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Stock.zip:system/addon.d/keyboard-anim/Stock.zip \
+    vendor/samsung/galaxys2/keyboard-anim/TeamDerpTheme.zip:system/addon.d/keyboard-anim/TeamDerpTheme.zip \
+    vendor/samsung/galaxys2/keyboard-anim/ThePsynFlip.zip:system/addon.d/keyboard-anim/ThePsynFlip.zip \
+    vendor/samsung/galaxys2/keyboard-anim/ThePsynShift.zip:system/addon.d/keyboard-anim/ThePsynShift.zip \
+    vendor/samsung/galaxys2/keyboard-anim/TwistedRubik.zip:system/addon.d/keyboard-anim/TwistedRubik.zip \
+    vendor/samsung/galaxys2/keyboard-anim/Vortex.zip:system/addon.d/keyboard-anim/Vortex.zip \
+    vendor/samsung/galaxys2/window-anim/Bouncey.zip:system/addon.d/window-anim/Bouncey.zip \
+    vendor/samsung/galaxys2/window-anim/Chaos.zip:system/addon.d/window-anim/Chaos.zip \
+    vendor/samsung/galaxys2/window-anim/ChaosRevenge.zip:system/addon.d/window-anim/ChaosRevenge.zip \
+    vendor/samsung/galaxys2/window-anim/Eternity.zip:system/addon.d/window-anim/Eternity.zip \
+    vendor/samsung/galaxys2/window-anim/Flip.zip:system/addon.d/window-anim/Flip.zip \
+    vendor/samsung/galaxys2/window-anim/Photon.zip:system/addon.d/window-anim/Photon.zip \
+    vendor/samsung/galaxys2/window-anim/Card-Stack.zip:system/addon.d/window-anim/Card-Stack.zip \
+    vendor/samsung/galaxys2/window-anim/Stock.zip:system/addon.d/window-anim/Stock.zip \
+    vendor/samsung/galaxys2/window-anim/TeamDerpTheme.zip:system/addon.d/window-anim/TeamDerpTheme.zip \
+    vendor/samsung/galaxys2/window-anim/ThePsynFlip.zip:system/addon.d/window-anim/ThePsynFlip.zip \
+    vendor/samsung/galaxys2/window-anim/ThePsynShift.zip:system/addon.d/window-anim/ThePsynShift.zip \
+    vendor/samsung/galaxys2/window-anim/TwistedRubik.zip:system/addon.d/window-anim/TwistedRubik.zip \
+    vendor/samsung/galaxys2/window-anim/Vortex.zip:system/addon.d/window-anim/Vortex.zip \
+    vendor/samsung/galaxys2/com.aokp.animation.manager.apk:system/app/com.aokp.animation.manager.apk
 
 # NFC
 PRODUCT_PACKAGES += \

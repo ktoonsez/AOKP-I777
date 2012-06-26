@@ -78,6 +78,16 @@
     </header>
 
     <header
+        android:id="@+id/animation_manager_app"
+        android:title="@string/animation_manager_title"
+        android:icon="@android:drawable/ic_menu_slideshow">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.aokp.animation.manager"
+            android:targetClass="com.aokp.animation.main" />
+    </header>
+
+    <header
         android:id="@+id/ota_app"
         android:title="@string/ota_app_title"
         android:icon="@drawable/ic_settings_ota">
