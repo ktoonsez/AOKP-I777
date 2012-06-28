@@ -94,7 +94,8 @@ PRODUCT_COPY_FILES += \
     vendor/samsung/galaxys2/window-anim/ThePsynShift.zip:system/addon.d/window-anim/ThePsynShift.zip \
     vendor/samsung/galaxys2/window-anim/TwistedRubik.zip:system/addon.d/window-anim/TwistedRubik.zip \
     vendor/samsung/galaxys2/window-anim/Vortex.zip:system/addon.d/window-anim/Vortex.zip \
-    vendor/samsung/galaxys2/com.aokp.animation.manager.apk:system/app/com.aokp.animation.manager.apk
+    vendor/samsung/galaxys2/com.aokp.animation.manager.apk:system/app/com.aokp.animation.manager.apk \
+    vendor/samsung/galaxys2/framework-flash.zip:system/addon.d/framework-flash.zip
 
 # NFC
 PRODUCT_PACKAGES += \
