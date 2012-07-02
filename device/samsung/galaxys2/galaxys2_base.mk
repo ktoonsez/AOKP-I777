@@ -182,4 +182,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_DISPLAY_ID="Task650 & Ktoonsez AOKP" BUILD
 $(call inherit-product, frameworks/base/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Include exynos4 platform specific parts
-$(call inherit-product, hardware/samsung/exynos4/Android.mk)
+$(call inherit-product, hardware/samsung/Android.mk)
