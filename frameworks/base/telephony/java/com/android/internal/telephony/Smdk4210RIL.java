@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.LocalSocket;
 import android.net.LocalSocketAddress;
@@ -64,15 +65,90 @@ import java.util.Collections;
 
 public class Smdk4210RIL extends RIL implements CommandsInterface {
 
-    //SAMSUNG SMDK4210 STATES
+    //SAMSUNG STATES
+    static final int RIL_REQUEST_GET_CELL_BROADCAST_CONFIG = 10002;
+
+    static final int RIL_REQUEST_SEND_ENCODED_USSD = 10005;
+    static final int RIL_REQUEST_SET_PDA_MEMORY_STATUS = 10006;
+    static final int RIL_REQUEST_GET_PHONEBOOK_STORAGE_INFO = 10007;
+    static final int RIL_REQUEST_GET_PHONEBOOK_ENTRY = 10008;
+    static final int RIL_REQUEST_ACCESS_PHONEBOOK_ENTRY = 10009;
+    static final int RIL_REQUEST_DIAL_VIDEO_CALL = 10010;
+    static final int RIL_REQUEST_CALL_DEFLECTION = 10011;
+    static final int RIL_REQUEST_READ_SMS_FROM_SIM = 10012;
+    static final int RIL_REQUEST_USIM_PB_CAPA = 10013;
+    static final int RIL_REQUEST_LOCK_INFO = 10014;
+
     static final int RIL_REQUEST_DIAL_EMERGENCY = 10016;
+    static final int RIL_REQUEST_GET_STOREAD_MSG_COUNT = 10017;
+    static final int RIL_REQUEST_STK_SIM_INIT_EVENT = 10018;
+    static final int RIL_REQUEST_GET_LINE_ID = 10019;
+    static final int RIL_REQUEST_SET_LINE_ID = 10020;
+    static final int RIL_REQUEST_GET_SERIAL_NUMBER = 10021;
+    static final int RIL_REQUEST_GET_MANUFACTURE_DATE_NUMBER = 10022;
+    static final int RIL_REQUEST_GET_BARCODE_NUMBER = 10023;
+    static final int RIL_REQUEST_UICC_GBA_AUTHENTICATE_BOOTSTRAP = 10024;
+    static final int RIL_REQUEST_UICC_GBA_AUTHENTICATE_NAF = 10025;
+    static final int RIL_REQUEST_SIM_TRANSMIT_BASIC = 10026;
+    static final int RIL_REQUEST_SIM_OPEN_CHANNEL = 10027;
+    static final int RIL_REQUEST_SIM_CLOSE_CHANNEL = 10028;
+    static final int RIL_REQUEST_SIM_TRANSMIT_CHANNEL = 10029;
+    static final int RIL_REQUEST_SIM_AUTH = 10030;
+    static final int RIL_REQUEST_PS_ATTACH = 10031;
+    static final int RIL_REQUEST_PS_DETACH = 10032;
+    static final int RIL_REQUEST_ACTIVATE_DATA_CALL = 10033;
+    static final int RIL_REQUEST_CHANGE_SIM_PERSO = 10034;
+    static final int RIL_REQUEST_ENTER_SIM_PERSO = 10035;
+    static final int RIL_REQUEST_GET_TIME_INFO = 10036;
+    static final int RIL_REQUEST_OMADM_SETUP_SESSION = 10037;
+    static final int RIL_REQUEST_OMADM_SERVER_START_SESSION = 10038;
+    static final int RIL_REQUEST_OMADM_CLIENT_START_SESSION = 10039;
+    static final int RIL_REQUEST_OMADM_SEND_DATA = 10040;
+    static final int RIL_REQUEST_CDMA_GET_DATAPROFILE = 10041;
+    static final int RIL_REQUEST_CDMA_SET_DATAPROFILE = 10042;
+    static final int RIL_REQUEST_CDMA_GET_SYSTEMPROPERTIES = 10043;
+    static final int RIL_REQUEST_CDMA_SET_SYSTEMPROPERTIES = 10044;
+    static final int RIL_REQUEST_SEND_SMS_COUNT = 10045;
+    static final int RIL_REQUEST_SEND_SMS_MSG = 10046;
+    static final int RIL_REQUEST_SEND_SMS_MSG_READ_STATUS = 10047;
+    static final int RIL_REQUEST_MODEM_HANGUP = 10048;
+    static final int RIL_REQUEST_SET_SIM_POWER = 10049;
+    static final int RIL_REQUEST_SET_PREFERRED_NETWORK_LIST = 10050;
+    static final int RIL_REQUEST_GET_PREFERRED_NETWORK_LIST = 10051;
+    static final int RIL_REQUEST_HANGUP_VT = 10052;
+
+    static final int RIL_UNSOL_RELEASE_COMPLETE_MESSAGE = 11001;
     static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
+    static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
+    static final int RIL_UNSOL_DUN_CALL_STATUS = 11004;
+
     static final int RIL_UNSOL_O2_HOME_ZONE_INFO = 11007;
     static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
-    static final int RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_1 = 11010;
-    static final int RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_2 = 11011;
-    static final int RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_3 = 11012;
+    static final int RIL_UNSOL_GPS_NOTI = 11009;
+    static final int RIL_UNSOL_AM = 11010;
+    static final int RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL = 11011;
+    static final int RIL_UNSOL_DATA_SUSPEND_RESUME = 11012;
+    static final int RIL_UNSOL_SAP = 11013;
+
+    static final int RIL_UNSOL_SIM_SMS_STORAGE_AVAILALE = 11015;
     static final int RIL_UNSOL_HSDPA_STATE_CHANGED = 11016;
+    static final int RIL_UNSOL_WB_AMR_STATE = 11017;
+    static final int RIL_UNSOL_TWO_MIC_STATE = 11018;
+    static final int RIL_UNSOL_DHA_STATE = 11019;
+    static final int RIL_UNSOL_UART = 11020;
+    static final int RIL_UNSOL_RESPONSE_HANDOVER = 11021;
+    static final int RIL_UNSOL_IPV6_ADDR = 11022;
+    static final int RIL_UNSOL_NWK_INIT_DISC_REQUEST = 11023;
+    static final int RIL_UNSOL_RTS_INDICATION = 11024;
+    static final int RIL_UNSOL_OMADM_SEND_DATA = 11025;
+    static final int RIL_UNSOL_DUN = 11026;
+    static final int RIL_UNSOL_SYSTEM_REBOOT = 11027;
+    static final int RIL_UNSOL_VOICE_PRIVACY_CHANGED = 11028;
+    static final int RIL_UNSOL_UTS_GETSMSCOUNT = 11029;
+    static final int RIL_UNSOL_UTS_GETSMSMSG = 11030;
+    static final int RIL_UNSOL_UTS_GET_UNREAD_SMS_STATUS = 11031;
+    static final int RIL_UNSOL_MIP_CONNECT_STATUS = 11032;
+
     protected HandlerThread mSmdk4210Thread;
     protected ConnectivityHandler mSmdk4210Handler;
 
@@ -411,387 +487,41 @@ public class Smdk4210RIL extends RIL implements CommandsInterface {
         rr.release();
     }
 
-	@Override
-	protected void
-        processUnsolicited (Parcel p) {
-        int response;
+    @Override
+    protected void
+    processUnsolicited (Parcel p) {
         Object ret;
+        int dataPosition = p.dataPosition();
+        int response = p.readInt();
 
-        response = p.readInt();
-
-        try {switch(response) {
-
-            case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED: ret =  responseVoid(p); break;
-            case RIL_UNSOL_RESPONSE_CALL_STATE_CHANGED: ret =  responseVoid(p); break;
-            case RIL_UNSOL_RESPONSE_VOICE_NETWORK_STATE_CHANGED: ret =  responseVoid(p); break;
-            case RIL_UNSOL_RESPONSE_NEW_SMS: ret =  responseString(p); break;
-            case RIL_UNSOL_RESPONSE_NEW_SMS_STATUS_REPORT: ret =  responseString(p); break;
-            case RIL_UNSOL_RESPONSE_NEW_SMS_ON_SIM: ret =  responseInts(p); break;
-            case RIL_UNSOL_ON_USSD: ret =  responseStrings(p); break;
-            case RIL_UNSOL_NITZ_TIME_RECEIVED: ret =  responseString(p); break;
-            case RIL_UNSOL_SIGNAL_STRENGTH: ret = responseSignalStrength(p); break;
-            case RIL_UNSOL_DATA_CALL_LIST_CHANGED: ret = responseDataCallList(p);break;
-            case RIL_UNSOL_SUPP_SVC_NOTIFICATION: ret = responseSuppServiceNotification(p); break;
-            case RIL_UNSOL_STK_SESSION_END: ret = responseVoid(p); break;
-            case RIL_UNSOL_STK_PROACTIVE_COMMAND: ret = responseString(p); break;
-            case RIL_UNSOL_STK_EVENT_NOTIFY: ret = responseString(p); break;
-            case RIL_UNSOL_STK_CALL_SETUP: ret = responseInts(p); break;
-            case RIL_UNSOL_SIM_SMS_STORAGE_FULL: ret =  responseVoid(p); break;
-            case RIL_UNSOL_SIM_REFRESH: ret =  responseInts(p); break;
-            case RIL_UNSOL_CALL_RING: ret =  responseCallRing(p); break;
-            case RIL_UNSOL_RESTRICTED_STATE_CHANGED: ret = responseInts(p); break;
-            case RIL_UNSOL_RESPONSE_SIM_STATUS_CHANGED:  ret =  responseVoid(p); break;
-            case RIL_UNSOL_RESPONSE_CDMA_NEW_SMS:  ret =  responseCdmaSms(p); break;
-            case RIL_UNSOL_RESPONSE_NEW_BROADCAST_SMS:  ret =  responseString(p); break;
-            case RIL_UNSOL_CDMA_RUIM_SMS_STORAGE_FULL:  ret =  responseVoid(p); break;
-            case RIL_UNSOL_ENTER_EMERGENCY_CALLBACK_MODE: ret = responseVoid(p); break;
-            case RIL_UNSOL_CDMA_CALL_WAITING: ret = responseCdmaCallWaiting(p); break;
-            case RIL_UNSOL_CDMA_OTA_PROVISION_STATUS: ret = responseInts(p); break;
-            case RIL_UNSOL_CDMA_INFO_REC: ret = responseCdmaInformationRecord(p); break;
-            case RIL_UNSOL_OEM_HOOK_RAW: ret = responseRaw(p); break;
-            case RIL_UNSOL_RINGBACK_TONE: ret = responseInts(p); break;
-            case RIL_UNSOL_RESEND_INCALL_MUTE: ret = responseVoid(p); break;
-            case RIL_UNSOL_CDMA_SUBSCRIPTION_SOURCE_CHANGED: ret = responseInts(p); break;
-            case RIL_UNSOL_CDMA_PRL_CHANGED: ret = responseInts(p); break;
-            case RIL_UNSOL_EXIT_EMERGENCY_CALLBACK_MODE: ret = responseVoid(p); break;
+        switch (response) {
+            case RIL_UNSOL_RESPONSE_NEW_BROADCAST_SMS: ret = responseString(p); break;
             case RIL_UNSOL_RIL_CONNECTED: ret = responseInts(p); break;
-
             // SAMSUNG STATES
-            case RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_1: ret = responseVoid(p); break;
-            case RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_2: ret = responseVoid(p); break;
-            case RIL_UNSOL_SAMSUNG_UNKNOWN_MAGIC_REQUEST_3: ret = responseVoid(p); break;
+            case RIL_UNSOL_AM: ret = responseVoid(p); break;
+            case RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL: ret = responseVoid(p); break;
+            case RIL_UNSOL_DATA_SUSPEND_RESUME: ret = responseInts(p); break;
+            case RIL_UNSOL_WB_AMR_STATE: ret = responseInts(p); break;
 
             default:
-                throw new RuntimeException("Unrecognized unsol response: " + response);
-            //break; (implied)
-        }} catch (Throwable tr) {
-            Log.e(LOG_TAG, "Exception processing unsol response: " + response +
-                "Exception:" + tr.toString());
-            return;
+                // Rewind the Parcel
+                p.setDataPosition(dataPosition);
+
+                // Forward responses that we are not overriding to the super class
+                super.processUnsolicited(p);
+                return;
         }
 
-        switch(response) {
-            case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED:
-                /* has bonus radio state int */
-                RadioState newState = getRadioStateFromInt(p.readInt());
-                if (RILJ_LOGD) unsljLogMore(response, newState.toString());
-
-                switchToRadioState(newState);
-            break;
-            case RIL_UNSOL_RESPONSE_CALL_STATE_CHANGED:
-                if (RILJ_LOGD) unsljLog(response);
-
-                mCallStateRegistrants
-                    .notifyRegistrants(new AsyncResult(null, null, null));
-            break;
-            case RIL_UNSOL_RESPONSE_VOICE_NETWORK_STATE_CHANGED:
-                if (RILJ_LOGD) unsljLog(response);
-
-                mVoiceNetworkStateRegistrants
-                    .notifyRegistrants(new AsyncResult(null, null, null));
-            break;
-            case RIL_UNSOL_RESPONSE_NEW_SMS: {
-                if (RILJ_LOGD) unsljLog(response);
-
-                // FIXME this should move up a layer
-                String a[] = new String[2];
-
-                a[1] = (String)ret;
-
-                SmsMessage sms;
-
-                sms = SmsMessage.newFromCMT(a);
-                if (mGsmSmsRegistrant != null) {
-                    mGsmSmsRegistrant
-                        .notifyRegistrant(new AsyncResult(null, sms, null));
-                }
-            break;
-            }
-            case RIL_UNSOL_RESPONSE_NEW_SMS_STATUS_REPORT:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mSmsStatusRegistrant != null) {
-                    mSmsStatusRegistrant.notifyRegistrant(
-                            new AsyncResult(null, ret, null));
-                }
-            break;
-            case RIL_UNSOL_RESPONSE_NEW_SMS_ON_SIM:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                int[] smsIndex = (int[])ret;
-
-                if(smsIndex.length == 1) {
-                    if (mSmsOnSimRegistrant != null) {
-                        mSmsOnSimRegistrant.
-                                notifyRegistrant(new AsyncResult(null, smsIndex, null));
-                    }
-                } else {
-                    if (RILJ_LOGD) riljLog(" NEW_SMS_ON_SIM ERROR with wrong length "
-                            + smsIndex.length);
-                }
-            break;
-            case RIL_UNSOL_ON_USSD:
-                String[] resp = (String[])ret;
-
-                if (resp.length < 2) {
-                    resp = new String[2];
-                    resp[0] = ((String[])ret)[0];
-                    resp[1] = null;
-                }
-                if (RILJ_LOGD) unsljLogMore(response, resp[0]);
-                if (mUSSDRegistrant != null) {
-                    mUSSDRegistrant.notifyRegistrant(
-                        new AsyncResult (null, resp, null));
-                }
-            break;
-            case RIL_UNSOL_NITZ_TIME_RECEIVED:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                // has bonus long containing milliseconds since boot that the NITZ
-                // time was received
-                long nitzReceiveTime = p.readLong();
-
-                Object[] result = new Object[2];
-
-                result[0] = ret;
-                result[1] = Long.valueOf(nitzReceiveTime);
-
-                if (mNITZTimeRegistrant != null) {
-
-                    mNITZTimeRegistrant
-                        .notifyRegistrant(new AsyncResult (null, result, null));
-                } else {
-                    // in case NITZ time registrant isnt registered yet
-                    mLastNITZTimeInfo = result;
-                }
-            break;
-
-            case RIL_UNSOL_SIGNAL_STRENGTH:
-                // Note this is set to "verbose" because it happens
-                // frequently
-                if (RILJ_LOGV) unsljLogvRet(response, ret);
-
-                if (mSignalStrengthRegistrant != null) {
-                    mSignalStrengthRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-            break;
-            case RIL_UNSOL_DATA_CALL_LIST_CHANGED:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                mDataNetworkStateRegistrants.notifyRegistrants(new AsyncResult(null, ret, null));
-            break;
-
-            case RIL_UNSOL_SUPP_SVC_NOTIFICATION:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mSsnRegistrant != null) {
-                    mSsnRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_STK_SESSION_END:
-                if (RILJ_LOGD) unsljLog(response);
-
-                if (mCatSessionEndRegistrant != null) {
-                    mCatSessionEndRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_STK_PROACTIVE_COMMAND:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCatProCmdRegistrant != null) {
-                    mCatProCmdRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_STK_EVENT_NOTIFY:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCatEventRegistrant != null) {
-                    mCatEventRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_STK_CALL_SETUP:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCatCallSetUpRegistrant != null) {
-                    mCatCallSetUpRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_SIM_SMS_STORAGE_FULL:
-                if (RILJ_LOGD) unsljLog(response);
-
-                if (mIccSmsFullRegistrant != null) {
-                    mIccSmsFullRegistrant.notifyRegistrant();
-                }
-                break;
-
-            case RIL_UNSOL_SIM_REFRESH:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mIccRefreshRegistrants != null) {
-                    mIccRefreshRegistrants.notifyRegistrants(
-                            new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_CALL_RING:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mRingRegistrant != null) {
-                    mRingRegistrant.notifyRegistrant(
-                            new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_RESTRICTED_STATE_CHANGED:
-                if (RILJ_LOGD) unsljLogvRet(response, ret);
-                if (mRestrictedStateRegistrant != null) {
-                    mRestrictedStateRegistrant.notifyRegistrant(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_RESPONSE_SIM_STATUS_CHANGED:
-                if (RILJ_LOGD) unsljLog(response);
-
-                if (mIccStatusChangedRegistrants != null) {
-                    mIccStatusChangedRegistrants.notifyRegistrants();
-                }
-                break;
-
-            case RIL_UNSOL_RESPONSE_CDMA_NEW_SMS:
-                if (RILJ_LOGD) unsljLog(response);
-
-                SmsMessage sms = (SmsMessage) ret;
-
-                if (mCdmaSmsRegistrant != null) {
-                    mCdmaSmsRegistrant
-                        .notifyRegistrant(new AsyncResult(null, sms, null));
-                }
-                break;
-
+        switch (response) {
             case RIL_UNSOL_RESPONSE_NEW_BROADCAST_SMS:
-                if (RILJ_LOGD) unsljLog(response);
+                if (RILJ_LOGD) unsljLogRet(response, ret);
 
                 if (mGsmBroadcastSmsRegistrant != null) {
                     mGsmBroadcastSmsRegistrant
                         .notifyRegistrant(new AsyncResult(null, ret, null));
                 }
                 break;
-
-            case RIL_UNSOL_CDMA_RUIM_SMS_STORAGE_FULL:
-                if (RILJ_LOGD) unsljLog(response);
-
-                if (mIccSmsFullRegistrant != null) {
-                    mIccSmsFullRegistrant.notifyRegistrant();
-                }
-                break;
-
-            case RIL_UNSOL_ENTER_EMERGENCY_CALLBACK_MODE:
-                if (RILJ_LOGD) unsljLog(response);
-
-                if (mEmergencyCallbackModeRegistrant != null) {
-                    mEmergencyCallbackModeRegistrant.notifyRegistrant();
-                }
-                break;
-
-            case RIL_UNSOL_CDMA_CALL_WAITING:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCallWaitingInfoRegistrants != null) {
-                    mCallWaitingInfoRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_CDMA_OTA_PROVISION_STATUS:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mOtaProvisionRegistrants != null) {
-                    mOtaProvisionRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_CDMA_INFO_REC:
-                ArrayList<CdmaInformationRecords> listInfoRecs;
-
-                try {
-                    listInfoRecs = (ArrayList<CdmaInformationRecords>)ret;
-                } catch (ClassCastException e) {
-                    Log.e(LOG_TAG, "Unexpected exception casting to listInfoRecs", e);
-                    break;
-                }
-
-                for (CdmaInformationRecords rec : listInfoRecs) {
-                    if (RILJ_LOGD) unsljLogRet(response, rec);
-                    notifyRegistrantsCdmaInfoRec(rec);
-                }
-                break;
-
-            case RIL_UNSOL_OEM_HOOK_RAW:
-                if (RILJ_LOGD) unsljLogvRet(response, IccUtils.bytesToHexString((byte[])ret));
-                if (mUnsolOemHookRawRegistrant != null) {
-                    mUnsolOemHookRawRegistrant.notifyRegistrant(new AsyncResult(null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_RINGBACK_TONE:
-                if (RILJ_LOGD) unsljLogvRet(response, ret);
-                if (mRingbackToneRegistrants != null) {
-                    boolean playtone = (((int[])ret)[0] == 1);
-                    mRingbackToneRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, playtone, null));
-                }
-                break;
-
-            case RIL_UNSOL_RESEND_INCALL_MUTE:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mResendIncallMuteRegistrants != null) {
-                    mResendIncallMuteRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_CDMA_SUBSCRIPTION_SOURCE_CHANGED:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCdmaSubscriptionChangedRegistrants != null) {
-                    mCdmaSubscriptionChangedRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_CDMA_PRL_CHANGED:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mCdmaPrlChangedRegistrants != null) {
-                    mCdmaPrlChangedRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, ret, null));
-                }
-                break;
-
-            case RIL_UNSOL_EXIT_EMERGENCY_CALLBACK_MODE:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mExitEmergencyCallbackModeRegistrants != null) {
-                    mExitEmergencyCallbackModeRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, null, null));
-                }
-                break;
-
-            case RIL_UNSOL_RIL_CONNECTED: {
+            case RIL_UNSOL_RIL_CONNECTED:
                 if (RILJ_LOGD) unsljLogRet(response, ret);
 
                 // Initial conditions
@@ -800,7 +530,64 @@ public class Smdk4210RIL extends RIL implements CommandsInterface {
                 setCdmaSubscriptionSource(mCdmaSubscription, null);
                 notifyRegistrantsRilConnectionChanged(((int[])ret)[0]);
                 break;
-            }
+            // SAMSUNG STATES
+            case RIL_UNSOL_AM:
+            case RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL:
+            case RIL_UNSOL_DATA_SUSPEND_RESUME:
+                if (RILJ_LOGD) unsljLogRet(response, ret);
+                break;
+            case RIL_UNSOL_WB_AMR_STATE:
+                unsljLogRet(response, ret);
+                setWbAmr(((int[])ret)[0]);
+                break;
+        }
+    }
+
+    static String
+    responseToString(int request)
+    {
+        switch(request) {
+            case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED: return "UNSOL_RESPONSE_RADIO_STATE_CHANGED";
+            case RIL_UNSOL_RESPONSE_CALL_STATE_CHANGED: return "UNSOL_RESPONSE_CALL_STATE_CHANGED";
+            case RIL_UNSOL_RESPONSE_VOICE_NETWORK_STATE_CHANGED: return "UNSOL_RESPONSE_VOICE_NETWORK_STATE_CHANGED";
+            case RIL_UNSOL_RESPONSE_NEW_SMS: return "UNSOL_RESPONSE_NEW_SMS";
+            case RIL_UNSOL_RESPONSE_NEW_SMS_STATUS_REPORT: return "UNSOL_RESPONSE_NEW_SMS_STATUS_REPORT";
+            case RIL_UNSOL_RESPONSE_NEW_SMS_ON_SIM: return "UNSOL_RESPONSE_NEW_SMS_ON_SIM";
+            case RIL_UNSOL_ON_USSD: return "UNSOL_ON_USSD";
+            case RIL_UNSOL_ON_USSD_REQUEST: return "UNSOL_ON_USSD_REQUEST";
+            case RIL_UNSOL_NITZ_TIME_RECEIVED: return "UNSOL_NITZ_TIME_RECEIVED";
+            case RIL_UNSOL_SIGNAL_STRENGTH: return "UNSOL_SIGNAL_STRENGTH";
+            case RIL_UNSOL_DATA_CALL_LIST_CHANGED: return "UNSOL_DATA_CALL_LIST_CHANGED";
+            case RIL_UNSOL_SUPP_SVC_NOTIFICATION: return "UNSOL_SUPP_SVC_NOTIFICATION";
+            case RIL_UNSOL_STK_SESSION_END: return "UNSOL_STK_SESSION_END";
+            case RIL_UNSOL_STK_PROACTIVE_COMMAND: return "UNSOL_STK_PROACTIVE_COMMAND";
+            case RIL_UNSOL_STK_EVENT_NOTIFY: return "UNSOL_STK_EVENT_NOTIFY";
+            case RIL_UNSOL_STK_CALL_SETUP: return "UNSOL_STK_CALL_SETUP";
+            case RIL_UNSOL_SIM_SMS_STORAGE_FULL: return "UNSOL_SIM_SMS_STORAGE_FULL";
+            case RIL_UNSOL_SIM_REFRESH: return "UNSOL_SIM_REFRESH";
+            case RIL_UNSOL_CALL_RING: return "UNSOL_CALL_RING";
+            case RIL_UNSOL_RESPONSE_SIM_STATUS_CHANGED: return "UNSOL_RESPONSE_SIM_STATUS_CHANGED";
+            case RIL_UNSOL_RESPONSE_CDMA_NEW_SMS: return "UNSOL_RESPONSE_CDMA_NEW_SMS";
+            case RIL_UNSOL_RESPONSE_NEW_BROADCAST_SMS: return "UNSOL_RESPONSE_NEW_BROADCAST_SMS";
+            case RIL_UNSOL_CDMA_RUIM_SMS_STORAGE_FULL: return "UNSOL_CDMA_RUIM_SMS_STORAGE_FULL";
+            case RIL_UNSOL_RESTRICTED_STATE_CHANGED: return "UNSOL_RESTRICTED_STATE_CHANGED";
+            case RIL_UNSOL_ENTER_EMERGENCY_CALLBACK_MODE: return "UNSOL_ENTER_EMERGENCY_CALLBACK_MODE";
+            case RIL_UNSOL_CDMA_CALL_WAITING: return "UNSOL_CDMA_CALL_WAITING";
+            case RIL_UNSOL_CDMA_OTA_PROVISION_STATUS: return "UNSOL_CDMA_OTA_PROVISION_STATUS";
+            case RIL_UNSOL_CDMA_INFO_REC: return "UNSOL_CDMA_INFO_REC";
+            case RIL_UNSOL_OEM_HOOK_RAW: return "UNSOL_OEM_HOOK_RAW";
+            case RIL_UNSOL_RINGBACK_TONE: return "UNSOL_RINGBACK_TONE";
+            case RIL_UNSOL_RESEND_INCALL_MUTE: return "UNSOL_RESEND_INCALL_MUTE";
+            case RIL_UNSOL_CDMA_SUBSCRIPTION_SOURCE_CHANGED: return "CDMA_SUBSCRIPTION_SOURCE_CHANGED";
+            case RIL_UNSOL_CDMA_PRL_CHANGED: return "UNSOL_CDMA_PRL_CHANGED";
+            case RIL_UNSOL_EXIT_EMERGENCY_CALLBACK_MODE: return "UNSOL_EXIT_EMERGENCY_CALLBACK_MODE";
+            case RIL_UNSOL_RIL_CONNECTED: return "UNSOL_RIL_CONNECTED";
+            // SAMSUNG STATES
+            case RIL_UNSOL_AM: return "RIL_UNSOL_AM";
+            case RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL: return "RIL_UNSOL_DUN_PIN_CONTROL_SIGNAL";
+            case RIL_UNSOL_DATA_SUSPEND_RESUME: return "RIL_UNSOL_DATA_SUSPEND_RESUME";
+            case RIL_UNSOL_WB_AMR_STATE: return "RIL_UNSOL_WB_AMR_STATE";
+            default: return "<unknown response: "+request+">";
         }
     }
 
@@ -814,6 +601,22 @@ public class Smdk4210RIL extends RIL implements CommandsInterface {
         if (mRilConnectedRegistrants != null) {
             mRilConnectedRegistrants.notifyRegistrants(
                                 new AsyncResult (null, new Integer(rilVer), null));
+        }
+    }
+
+    /**
+     * Set audio parameter "wb_amr" for HD-Voice (Wideband AMR).
+     *
+     * @param state: 0 = unsupported, 1 = supported.
+     */
+    private void setWbAmr(int state) {
+        AudioManager audioManager = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
+        if (state == 1) {
+            Log.d(LOG_TAG, "setWbAmr(): setting audio parameter - wb_amr=on");
+            audioManager.setParameters("wb_amr=on");
+        } else {
+            Log.d(LOG_TAG, "setWbAmr(): setting audio parameter - wb_amr=off");
+            audioManager.setParameters("wb_amr=off");
         }
     }
 
@@ -963,20 +766,29 @@ public class Smdk4210RIL extends RIL implements CommandsInterface {
         int numInts = 12;
         int response[];
 
-        /* TODO: Add SignalStrength class to match RIL_SignalStrength */
+        // Get raw data
         response = new int[numInts];
         for (int i = 0 ; i < numInts ; i++) {
             response[i] = p.readInt();
         }
 
-        // SamsungRIL is a v3 RIL, fill the rest with -1
-        for (int i = 7; i < numInts; i++) {
-            response[i] = -1;
+        Log.d(LOG_TAG, "responseSignalStength BEFORE: gsmDbm=" + response[0]);
+
+        //Samsung sends the count of bars that should be displayed instead of
+        //a real signal strength
+        int num_bars = (response[0] & 0xff00) >> 8;
+
+        // Translate number of bars into something SignalStrength.java can understand
+        switch (num_bars) {
+            case 0  : response[0] = 1;     break; // map to 0 bars
+            case 1  : response[0] = 3;     break; // map to 1 bar
+            case 2  : response[0] = 5;     break; // map to 2 bars
+            case 3  : response[0] = 8;     break; // map to 3 bars
+            case 4  : response[0] = 12;    break; // map to 4 bars
+            case 5  : response[0] = 15;    break; // map to 4 bars but give an extra 10 dBm
+            default : response[0] &= 0xff; break; // no idea; just pass value through
         }
 
-        /* Matching Samsung signal strength to asu.
-           Method taken from Samsungs cdma/gsmSignalStateTracker */
-        response[0] = ((response[0] & 0xFF00) >> 8) * 3; //gsmDbm
         response[1] = -1; //gsmEcio
         response[2] = (response[2] < 0)?-120:-response[2]; //cdmaDbm
         response[3] = (response[3] < 0)?-160:-response[3]; //cdmaEcio
@@ -986,7 +798,8 @@ public class Smdk4210RIL extends RIL implements CommandsInterface {
             response[6] = -1;
         }
 
+        Log.d(LOG_TAG, "responseSignalStength AFTER: gsmDbm=" + response[0]);
+
         return response;
     }
-
 }
