@@ -24,6 +24,7 @@ import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 import static android.provider.Settings.System.STAY_ON_WHILE_PLUGGED_IN;
 import static android.provider.Settings.System.TRANSITION_ANIMATION_SCALE;
 import static android.provider.Settings.System.WINDOW_ANIMATION_SCALE;
+import static android.provider.Settings.System.BRIGHTNESS_SPEED;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -106,10 +107,10 @@ public class PowerManagerService extends IPowerManager.Stub
     private static final int LONG_DIM_TIME = 7000;              // t+N-5 sec
 
     // How long to wait to debounce light sensor changes in milliseconds
-    private static final int LIGHT_SENSOR_DELAY = 2000;
+    private static final int LIGHT_SENSOR_DELAY = 1000;
 
     // light sensor events rate in microseconds
-    private static final int LIGHT_SENSOR_RATE = 1000000;
+    private static int LIGHT_SENSOR_RATE = 1000000;
 
     // For debouncing the proximity sensor in milliseconds
     private static final int PROXIMITY_SENSOR_DELAY = 1000;
@@ -303,6 +304,7 @@ public class PowerManagerService extends IPowerManager.Stub
     private int mLightFilterWindow;
     private int mLightFilterInterval;
     private int mLightFilterReset;
+    private static int mLightBrightnessSpeed;
 
     // Used when logging number and duration of touch-down cycles
     private long mTotalTouchDownTime;
@@ -3025,6 +3027,10 @@ public class PowerManagerService extends IPowerManager.Stub
         } else {
             lightFilterStop();
         }
+
+        mLightBrightnessSpeed = Settings.System.getInt(cr,
+                Settings.System.BRIGHTNESS_SPEED, 1000000);
+	LIGHT_SENSOR_RATE = mLightBrightnessSpeed;
 
         if (mDebugLightSensor) {
             Slog.d(TAG, "custom: " + mCustomLightEnabled);
