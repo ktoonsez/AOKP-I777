@@ -8,6 +8,5 @@
 # any tracked files which get ignored after the change.
 #
 # Normal rules
-#
-*~
+#*~
 \#*#
